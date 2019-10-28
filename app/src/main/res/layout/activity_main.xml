@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".view.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sistema Avicena - validação de usuario"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+
+        />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/coracao"
+        android:layout_marginBottom="26dp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login:"
+        android:textSize="18sp"
+        android:background="#107689"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o seu email para acessar o sistema avicena"
+        android:textSize="16sp"
+        android:id="@+id/editLogin"
+        android:layout_marginBottom="16dp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha:"
+        android:textSize="18sp"
+        android:background="#107689"
+
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite sua senha..."
+        android:textSize="16sp"
+        android:id="@+id/editSenha"
+
+        />
+
+</LinearLayout>
