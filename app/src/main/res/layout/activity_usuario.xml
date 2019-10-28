@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="Login:"
         android:textSize="18sp"
-        android:background="#107689"
+        android:background="#c8e6c9"
 
         />
 
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Senha:"
         android:textSize="18sp"
-        android:background="#107689"
+        android:background="#c8e6c9"
 
 
         />
@@ -71,8 +71,8 @@
         android:text="Acessar Avicena"
         android:textSize="16sp"
         android:layout_marginTop="40dp"
-        android:background="#107689"
-        android:id="@+id/btnValidar"
+        android:background="#c8e6c9"
+        android:onClick="validar"
 
         />
 
