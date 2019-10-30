@@ -22,7 +22,6 @@ public class UsuarioController {
     private Activity activity;
     private EditText editLogin;
     private EditText editSenha;
-
     private Usuario usuario;
 
     public UsuarioController(Activity activity) {
@@ -72,11 +71,10 @@ public class UsuarioController {
     private void validarLoginESenha(Usuario usuario) {
 
         Gson gson = new Gson();
+        RequestParams parametros = new RequestParams();
+        parametros.put("dado", gson.toJson(usuario));
         AsyncHttpClient client = new AsyncHttpClient();
-        RequestParams params = new RequestParams();
-        params.put("dado", gson.toJson(usuario));
-
-        client.post("http://10.10.100.205:8080/ApiAvicena/api/usuario", params , new AsyncHttpResponseHandler() {
+        client.post("http://10.10.100.205:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart(){
@@ -102,7 +100,6 @@ public class UsuarioController {
                     Toast.makeText(activity, "Usuario invalido", Toast.LENGTH_SHORT).show();
                 }
             }
-
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
