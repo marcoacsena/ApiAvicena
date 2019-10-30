@@ -24,54 +24,54 @@ public class UsuarioController {
     private void initComponents() {
         editLogin = activity.findViewById(R.id.editLogin);
         editSenha = activity.findViewById(R.id.editSenha);
-
     }
-
-
 
     public void validarAction() {
 
-        Usuario usuario = new Usuario();
-
-        usuario.setLogin(editLogin.getText().toString());
-        usuario.setSenha(editSenha.getText().toString());
+        Usuario usuario = pegarDadosDoForm();
 
         UsuarioBO usuarioBO = new UsuarioBO(usuario);
 
-        if(valida (usuarioBO)){
-
-                validarLoginSenha();
-
-
-
-
-
+        if(validar(usuarioBO)){
+                validarLoginESenha();
         }
-
     }
 
-    private void validarLoginSenha() {
-
+    private Usuario pegarDadosDoForm() {
+        Usuario usuario = new Usuario();
+        usuario.setLogin(editLogin.getText().toString());
+        usuario.setSenha(editSenha.getText().toString());
+        return usuario;
     }
 
-    private void chamarTelaIncial(){
-        Intent it = new Intent(activity, OpcoesActivity.class);
-        it.putExtra("usuario", usuario);
-        activity.startActivity(it);
-    }
+    private boolean validar(UsuarioBO usuarioBO) {
 
-    private boolean valida(UsuarioBO usuarioBO) {
-
-        if(!usuarioBO.validaLogin()){
+        if(!usuarioBO.validarLogin()){
             editLogin.setError("Preencha corretamente o email");
             return false;
         }
 
-        if(!usuarioBO.validaSenha()){
+        if(!usuarioBO.validarSenha()){
             editSenha.setError("Preencha corretamente a senha");
             return false;
         }
 
         return true;
     }
+
+    private void validarLoginESenha() {
+
+
+
+    }
+
+    private void chamarTelaOpcoes(Usuario usuario){
+
+
+        Intent it = new Intent(activity, OpcoesActivity.class);
+        it.putExtra("usuario", usuario);
+        activity.startActivity(it);
+    }
+
+
 }
