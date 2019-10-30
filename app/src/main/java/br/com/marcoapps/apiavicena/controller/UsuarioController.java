@@ -42,17 +42,17 @@ public class UsuarioController {
 
     public void validarAction() {
 
-        Usuario usuario = pegarDadosDoForm();
+        usuario = pegarDadosDoForm();
 
         UsuarioBO usuarioBO = new UsuarioBO(usuario);
 
         if(validar(usuarioBO)){
-                validarLoginESenha();
+                validarLoginESenha(usuario);
         }
     }
 
     private Usuario pegarDadosDoForm() {
-        Usuario usuario = new Usuario();
+        usuario = new Usuario();
         usuario.setLogin(editLogin.getText().toString());
         usuario.setSenha(editSenha.getText().toString());
         return usuario;
@@ -73,12 +73,11 @@ public class UsuarioController {
         return true;
     }
 
-    private void validarLoginESenha() {
+    private void validarLoginESenha(Usuario usuario) {
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.get("http://localhost",
-                new AsyncHttpResponseHandler() {
+        client.post("http://192.168.43.64:8080/ApiAvicena/api/usuario" + usuario, new AsyncHttpResponseHandler() {
 
                     @Override
                     public void onStart(){
@@ -98,8 +97,10 @@ public class UsuarioController {
                         Gson gson = new Gson();
 
                         UsuarioDTO usuarioDTO = gson.fromJson(usuarioEmJson, UsuarioDTO.class);
-                        usuario = usuarioDTO.getUsurio();
-                        chamarTelaOpcoes(usuario);
+                        Usuario usuario = usuarioDTO.getUsurio();
+                        //chamarTelaOpcoes(usuario);
+                        Toast.makeText(activity, "Usuario foi Validado", Toast.LENGTH_SHORT).show();
+
 
                     }
 
