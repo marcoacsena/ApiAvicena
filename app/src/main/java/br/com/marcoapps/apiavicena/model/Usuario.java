@@ -5,19 +5,19 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-@DatabaseTable(tableName = "usuario")
+//@DatabaseTable(tableName = "usuario")
 public class Usuario implements Serializable {
 
-    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+    //@DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer id;
 
-    @DatabaseField(canBeNull = false)
+    //@DatabaseField(canBeNull = false)
     private String login;
 
-    @DatabaseField (canBeNull = false)
+    //@DatabaseField (canBeNull = false)
     private String senha;
 
-    @DatabaseField (canBeNull = false)
+   // @DatabaseField (canBeNull = false)
     private String perfil;
 
     public Usuario() {
