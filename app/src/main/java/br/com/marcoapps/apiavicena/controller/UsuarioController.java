@@ -73,7 +73,7 @@ public class UsuarioController {
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.post("http://localhost:8080/ApiAvicena/api/usuario" + usuario, new AsyncHttpResponseHandler() {
+        client.post("http://192.168.43.64:8080/ApiAvicena/api/usuario" + usuario, new AsyncHttpResponseHandler() {
 
                     @Override
                     public void onStart(){
