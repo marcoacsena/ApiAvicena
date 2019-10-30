@@ -2,17 +2,13 @@ package br.com.marcoapps.apiavicena.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.print.PrinterId;
+import android.preference.PreferenceActivity;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import java.util.Arrays;
 
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.Usuario;
@@ -77,7 +73,7 @@ public class UsuarioController {
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.post("http://192.168.43.64:8080/ApiAvicena/api/usuario" + usuario, new AsyncHttpResponseHandler() {
+        client.post("http://localhost:8080/ApiAvicena/api/usuario" + usuario, new AsyncHttpResponseHandler() {
 
                     @Override
                     public void onStart(){
@@ -86,27 +82,24 @@ public class UsuarioController {
                         Toast.makeText(activity, "A validação do Usuario foi iniciada...", Toast.LENGTH_SHORT).show();
                     }
 
-                    @Override
-                    public void onSuccess(int i, Header[] headers, byte[] bytes) {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                //retorno em string da apiavicena em Json
 
-                        //retorno em string da apiavicena em Json
+                String usuarioEmJson = new String(bytes);
 
-                        String usuarioEmJson = new String(bytes);
+                //conversao da string json para objeto
+                Gson gson = new Gson();
 
-                        //conversao da string json para objeto
-                        Gson gson = new Gson();
-
-                        UsuarioDTO usuarioDTO = gson.fromJson(usuarioEmJson, UsuarioDTO.class);
-                        Usuario usuario = usuarioDTO.getUsurio();
-                        //chamarTelaOpcoes(usuario);
-                        Toast.makeText(activity, "Usuario foi Validado", Toast.LENGTH_SHORT).show();
+                UsuarioDTO usuarioDTO = gson.fromJson(usuarioEmJson, UsuarioDTO.class);
+                Usuario usuario = usuarioDTO.getUsurio();
+                //chamarTelaOpcoes(usuario);
+                Toast.makeText(activity, "Usuario foi Validado", Toast.LENGTH_SHORT).show();
+            }
 
 
-                    }
-
-                    @Override
-                    public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                         limparDados();
                     }
                 });
