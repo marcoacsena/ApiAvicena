@@ -18,7 +18,7 @@ import br.com.marcoapps.apiavicena.view.OpcoesActivity;
 import cz.msebera.android.httpclient.Header;
 
 public class UsuarioController {
-    
+
     private Activity activity;
     private EditText editLogin;
     private EditText editSenha;
@@ -74,7 +74,7 @@ public class UsuarioController {
         RequestParams parametros = new RequestParams();
         parametros.put("dado", gson.toJson(usuario));
         AsyncHttpClient client = new AsyncHttpClient();
-        client.post("http://10.10.100.205:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
+        client.post("http://192.168.43.64:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart(){
@@ -85,7 +85,8 @@ public class UsuarioController {
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                //retorno em string da apiavicena em Json
+
+              //  retorno em string da apiavicena em Json
 
                 String usuarioEmJson = new String(bytes);
                 //conversao da string json para objeto
@@ -103,9 +104,10 @@ public class UsuarioController {
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                        limparDados();
-                    }
-                });
+                limparDados();
+            }
+
+               });
 
     }
 
