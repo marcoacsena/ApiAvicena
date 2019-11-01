@@ -6,7 +6,7 @@ import com.loopj.android.http.RequestParams;
 
 import java.io.Serializable;
 
-//@DatabaseTable(tableName = "usuario")
+
 public class Usuario implements Serializable {
 
     //@DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
