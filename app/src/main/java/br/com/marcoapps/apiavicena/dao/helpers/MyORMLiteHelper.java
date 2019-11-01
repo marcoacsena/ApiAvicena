@@ -9,7 +9,9 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import br.com.marcoapps.apiavicena.model.Consulta;
 import br.com.marcoapps.apiavicena.model.Medico;
+import br.com.marcoapps.apiavicena.model.Usuario;
 
 public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "avicena";
@@ -22,7 +24,8 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
-            TableUtils.createTable(connectionSource, Medico.class);
+
+            TableUtils.createTable(connectionSource, Consulta.class);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -33,7 +36,8 @@ public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {
 
         try {
-            TableUtils.dropTable(connectionSource, Medico.class, true);
+
+            TableUtils.dropTable(connectionSource, Consulta.class, true);
 
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
