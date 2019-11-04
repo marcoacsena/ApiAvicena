@@ -11,10 +11,10 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import br.com.marcoapps.apiavicena.R;
-import br.com.marcoapps.apiavicena.model.Usuario;
-import br.com.marcoapps.apiavicena.model.UsuarioBO;
-import br.com.marcoapps.apiavicena.model.UsuarioDTO;
-import br.com.marcoapps.apiavicena.view.OpcoesActivity;
+import br.com.marcoapps.apiavicena.model.vo.Usuario;
+import br.com.marcoapps.apiavicena.model.bo.UsuarioBO;
+import br.com.marcoapps.apiavicena.model.dto.UsuarioDTO;
+import br.com.marcoapps.apiavicena.view.TelaOpcoes;
 import cz.msebera.android.httpclient.Header;
 
 public class UsuarioController {
@@ -112,7 +112,7 @@ public class UsuarioController {
     }
 
     private void chamarTelaOpcoes(Usuario usuario){
-        Intent it = new Intent(activity, OpcoesActivity.class);
+        Intent it = new Intent(activity, TelaOpcoes.class);
         it.putExtra("usuario", usuario);
         activity.startActivity(it);
     }

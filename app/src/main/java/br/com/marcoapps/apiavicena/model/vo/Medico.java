@@ -1,6 +1,9 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.vo;
 
-public class MedicoDTO {
+import java.io.Serializable;
+
+
+public class Medico implements Serializable {
 
     private Integer codigoMedico;
     private String nomeMedico;
@@ -10,10 +13,10 @@ public class MedicoDTO {
     private String celMensagemMedico;
     private String celularMedico;
 
-    public MedicoDTO() {
+    public Medico() {
     }
 
-    public MedicoDTO(Integer codigoMedico, String nomeMedico, String crm, String cpfMedico, String emailMedico, String celMensagemMedico, String celularMedico) {
+    public Medico(Integer codigoMedico, String nomeMedico, String crm, String cpfMedico, String emailMedico, String celMensagemMedico, String celularMedico) {
         this.codigoMedico = codigoMedico;
         this.nomeMedico = nomeMedico;
         this.crm = crm;
@@ -79,23 +82,9 @@ public class MedicoDTO {
         this.celularMedico = celularMedico;
     }
 
-    public Medico getMedico(){
-
-        Medico m = new Medico();
-        m.setCodigoMedico(codigoMedico);
-        m.setNomeMedico(nomeMedico);
-        m.setCrm(crm);
-        m.setCelMensagemMedico(celMensagemMedico);
-        m.setCelularMedico(celularMedico);
-        m.setEmailMedico(emailMedico);
-        m.setCpfMedico(cpfMedico);
-
-        return m;
-    }
-
     @Override
     public String toString() {
-        return "MedicoDTO{" +
+        return "Medico{" +
                 "codigoMedico=" + codigoMedico +
                 ", nomeMedico='" + nomeMedico + '\'' +
                 ", crm='" + crm + '\'' +

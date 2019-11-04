@@ -8,14 +8,14 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="@tools:sample/date/day_of_week">
+    tools:context=".view.ValidarUsuario">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
-        android:text="Sistema Avicena - validação de usuario"
+        android:text="Avicena - validação de usuario"
         android:textSize="18sp"
 
         />
@@ -33,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#c8e6c9"
+        android:padding="3dp"
         android:text="Login:"
         android:textSize="18sp"
 
@@ -43,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Digite o seu email para acessar o sistema avicena"
+        android:hint="Digite o seu email"
         android:inputType="textEmailAddress"
         android:textSize="16sp" />
 
@@ -51,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#c8e6c9"
+        android:padding="3dp"
         android:text="Senha:"
         android:textSize="18sp"
 

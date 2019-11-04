@@ -1,8 +1,4 @@
-package br.com.marcoapps.apiavicena.model;
-
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-import com.loopj.android.http.RequestParams;
+package br.com.marcoapps.apiavicena.model.vo;
 
 import java.io.Serializable;
 

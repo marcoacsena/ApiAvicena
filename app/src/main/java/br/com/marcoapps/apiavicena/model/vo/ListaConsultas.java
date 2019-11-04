@@ -1,4 +1,4 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.vo;
 
 import java.io.Serializable;
 import java.util.List;
