@@ -28,23 +28,15 @@ public class ListaConsultasDTO {
     }
 
     public List<Consulta> getConsultas(){
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 
-        Date data = null;
         List<Consulta> consultas = new ArrayList<>();
         Consulta c = new Consulta();
         for(int i = 0; i<listaConsultasDTO.size(); i++) {
-            try {
-                data = formatador.parse(listaConsultasDTO.get(i).getDataConsulta());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
-            c.setPaciente(listaConsultasDTO.get(i).getPaciente());
+            c.setPaciente(listaConsultasDTO.get(i).getPacienteDTO().getPaciente());
             c.setHorarioConsulta(listaConsultasDTO.get(i).getHorarioConsulta());
-            c.setEspecializacao(listaConsultasDTO.get(i).getEspecializacao());
-            c.setDataConsulta(data);
-            c.setConvenio(listaConsultasDTO.get(i).getConvenio());
+            c.setDataConsulta(listaConsultasDTO.get(i).getDataConsulta());
+
             c.setCodigoConsulta(listaConsultasDTO.get(i).getCodigoConsulta());
             consultas.add(c);
         }

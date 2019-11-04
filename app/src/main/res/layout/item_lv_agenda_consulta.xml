@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome"
+                android:hint="Nome"
                 android:textSize="16sp"
                 android:id="@+id/tvNome"/>
         </LinearLayout>
@@ -44,7 +44,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30/09/1964"
+                android:hint="30/09/1964"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descrição"
+                android:hint="Descrição"
                 android:textSize="16sp"
                 android:id="@+id/tvAtencaoEspecial"/>
         </LinearLayout>
@@ -92,7 +92,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30/09/1964"
+                android:hint="10:30"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:gravity="center"

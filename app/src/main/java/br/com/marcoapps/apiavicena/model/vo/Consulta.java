@@ -12,9 +12,11 @@ public class Consulta implements Serializable {
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer codigoConsulta;
     @DatabaseField (canBeNull = false)
-    private Date dataConsulta;
+    private String dataConsulta;
     @DatabaseField (canBeNull = false)
     private String horarioConsulta;
+    @DatabaseField (canBeNull = false)
+    private String atencaoEspecial;
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Paciente paciente;
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
@@ -25,17 +27,26 @@ public class Consulta implements Serializable {
     public Consulta() {
     }
 
-    public Consulta(Integer codigoConsulta, Paciente paciente, Especializacao especializacao, Convenio convenio, Date dataConsulta, String horarioConsulta) {
+    public Consulta(Integer codigoConsulta, String dataConsulta, String horarioConsulta, String atencaoEspecial, Paciente paciente, Especializacao especializacao, Convenio convenio) {
         this.codigoConsulta = codigoConsulta;
+        this.dataConsulta = dataConsulta;
+        this.horarioConsulta = horarioConsulta;
+        this.atencaoEspecial = atencaoEspecial;
         this.paciente = paciente;
         this.especializacao = especializacao;
         this.convenio = convenio;
-        this.dataConsulta = dataConsulta;
-        this.horarioConsulta = horarioConsulta;
     }
 
     public Integer getCodigoConsulta() {
         return codigoConsulta;
+    }
+
+    public String getAtencaoEspecial() {
+        return atencaoEspecial;
+    }
+
+    public void setAtencaoEspecial(String atencaoEspecial) {
+        this.atencaoEspecial = atencaoEspecial;
     }
 
     public void setCodigoConsulta(Integer codigoConsulta) {
@@ -66,11 +77,11 @@ public class Consulta implements Serializable {
         this.convenio = convenio;
     }
 
-    public Date getDataConsulta() {
+    public String getDataConsulta() {
         return dataConsulta;
     }
 
-    public void setDataConsulta(Date dataConsulta) {
+    public void setDataConsulta(String dataConsulta) {
         this.dataConsulta = dataConsulta;
     }
 

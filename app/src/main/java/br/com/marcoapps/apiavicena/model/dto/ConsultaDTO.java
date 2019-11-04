@@ -2,7 +2,9 @@ package br.com.marcoapps.apiavicena.model.dto;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.com.marcoapps.apiavicena.model.vo.Consulta;
 import br.com.marcoapps.apiavicena.model.vo.Convenio;
@@ -12,22 +14,20 @@ import br.com.marcoapps.apiavicena.model.vo.Paciente;
 public class ConsultaDTO {
 
     private Integer codigoConsulta;
-    private Paciente paciente;
-    private Especializacao especializacao;
-    private Convenio convenio;
+    private PacienteDTO pacienteVO;
     private String dataConsulta;
     private String horarioConsulta;
+    private String atencaoEspecial;
 
     public ConsultaDTO() {
     }
 
-    public ConsultaDTO(Integer codigoConsulta, Paciente paciente, Especializacao especializacao, Convenio convenio, String dataConsulta, String horarioConsulta) {
+    public ConsultaDTO(Integer codigoConsulta, PacienteDTO pacienteVO, String dataConsulta, String horarioConsulta, String atencaoEspecial) {
         this.codigoConsulta = codigoConsulta;
-        this.paciente = paciente;
-        this.especializacao = especializacao;
-        this.convenio = convenio;
+        this.pacienteVO = pacienteVO;
         this.dataConsulta = dataConsulta;
         this.horarioConsulta = horarioConsulta;
+        this.atencaoEspecial = atencaoEspecial;
     }
 
     public Integer getCodigoConsulta() {
@@ -38,29 +38,30 @@ public class ConsultaDTO {
         this.codigoConsulta = codigoConsulta;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public PacienteDTO getPacienteDTO() {
+        return pacienteVO;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public PacienteDTO getPacienteVO() {
+        return pacienteVO;
     }
 
-    public Especializacao getEspecializacao() {
-        return especializacao;
+    public void setPacienteVO(PacienteDTO pacienteVO) {
+        this.pacienteVO = pacienteVO;
     }
 
-    public void setEspecializacao(Especializacao especializacao) {
-        this.especializacao = especializacao;
+    public String getAtencaoEspecial() {
+        return atencaoEspecial;
     }
 
-    public Convenio getConvenio() {
-        return convenio;
+    public void setAtencaoEspecial(String atencaoEspecial) {
+        this.atencaoEspecial = atencaoEspecial;
     }
 
-    public void setConvenio(Convenio convenio) {
-        this.convenio = convenio;
+    public void setPacienteDTO(PacienteDTO pacienteDTO) {
+        this.pacienteVO = pacienteVO;
     }
+
 
     public String getDataConsulta() {
         return dataConsulta;
@@ -78,24 +79,17 @@ public class ConsultaDTO {
         this.horarioConsulta = horarioConsulta;
     }
 
-    public Consulta getConsulta(){
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-
-        Date data = null;
-        try {
-            data = formatador.parse(dataConsulta);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+    public List<Consulta> getConsulta(){
         Consulta c = new Consulta();
+        List<Consulta> consultas = new ArrayList<>();
          c.setCodigoConsulta(codigoConsulta);
-         c.setConvenio(convenio);
-         c.setDataConsulta(data);
-         c.setEspecializacao(especializacao);
+
+         c.setDataConsulta(dataConsulta);
+         c.setAtencaoEspecial(atencaoEspecial);
          c.setHorarioConsulta(horarioConsulta);
-         c.setPaciente(paciente);
-         return c;
+         c.setPaciente(pacienteVO.getPaciente());
+         consultas.add(c);
+         return consultas;
     }
 
     @Override
@@ -103,9 +97,7 @@ public class ConsultaDTO {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return "ConsultaDTO{" +
                 "codigoConsulta=" + codigoConsulta +
-                ", paciente=" + paciente +
-                ", especializacao=" + especializacao +
-                ", convenio=" + convenio +
+                ", paciente=" + pacienteVO +
                 ", dataConsulta='" + sdf.format(dataConsulta) + '\'' +
                 ", horarioConsulta='" + horarioConsulta + '\'' +
                 '}';
