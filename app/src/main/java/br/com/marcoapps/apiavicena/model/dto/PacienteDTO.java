@@ -1,4 +1,6 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.dto;
+
+import br.com.marcoapps.apiavicena.model.vo.Paciente;
 
 public class PacienteDTO {
     private Integer codigoPaciente;

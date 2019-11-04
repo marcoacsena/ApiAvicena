@@ -1,4 +1,8 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.dto;
+
+import br.com.marcoapps.apiavicena.model.vo.Especialidade;
+import br.com.marcoapps.apiavicena.model.vo.Especializacao;
+import br.com.marcoapps.apiavicena.model.vo.Medico;
 
 public class EspecializacaoDTO {
 

@@ -1,4 +1,4 @@
-package br.com.marcoapps.apiavicena.dao.helpers;
+package br.com.marcoapps.apiavicena.model.dao.helpers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,9 +9,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
-import br.com.marcoapps.apiavicena.model.Consulta;
-import br.com.marcoapps.apiavicena.model.Medico;
-import br.com.marcoapps.apiavicena.model.Usuario;
+import br.com.marcoapps.apiavicena.model.vo.Consulta;
 
 public class MyORMLiteHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "avicena";

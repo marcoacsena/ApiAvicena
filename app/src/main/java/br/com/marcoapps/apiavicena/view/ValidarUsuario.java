@@ -8,7 +8,7 @@ import android.view.View;
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.controller.UsuarioController;
 
-public class UsuarioActivity extends AppCompatActivity {
+public class ValidarUsuario extends AppCompatActivity {
 
     private UsuarioController control;
     @Override

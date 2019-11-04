@@ -1,12 +1,8 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.dto;
 
-import android.graphics.Paint;
-import android.icu.util.TimeZone;
+import br.com.marcoapps.apiavicena.model.vo.Medico;
 
-import java.io.Serializable;
-
-
-public class Medico implements Serializable {
+public class MedicoDTO {
 
     private Integer codigoMedico;
     private String nomeMedico;
@@ -16,10 +12,10 @@ public class Medico implements Serializable {
     private String celMensagemMedico;
     private String celularMedico;
 
-    public Medico() {
+    public MedicoDTO() {
     }
 
-    public Medico(Integer codigoMedico, String nomeMedico, String crm, String cpfMedico, String emailMedico, String celMensagemMedico, String celularMedico) {
+    public MedicoDTO(Integer codigoMedico, String nomeMedico, String crm, String cpfMedico, String emailMedico, String celMensagemMedico, String celularMedico) {
         this.codigoMedico = codigoMedico;
         this.nomeMedico = nomeMedico;
         this.crm = crm;
@@ -85,9 +81,23 @@ public class Medico implements Serializable {
         this.celularMedico = celularMedico;
     }
 
+    public Medico getMedico(){
+
+        Medico m = new Medico();
+        m.setCodigoMedico(codigoMedico);
+        m.setNomeMedico(nomeMedico);
+        m.setCrm(crm);
+        m.setCelMensagemMedico(celMensagemMedico);
+        m.setCelularMedico(celularMedico);
+        m.setEmailMedico(emailMedico);
+        m.setCpfMedico(cpfMedico);
+
+        return m;
+    }
+
     @Override
     public String toString() {
-        return "Medico{" +
+        return "MedicoDTO{" +
                 "codigoMedico=" + codigoMedico +
                 ", nomeMedico='" + nomeMedico + '\'' +
                 ", crm='" + crm + '\'' +

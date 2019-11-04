@@ -1,31 +1,27 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.dto;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-
-import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@DatabaseTable(tableName = "consulta")
-public class Consulta implements Serializable {
+import br.com.marcoapps.apiavicena.model.vo.Consulta;
+import br.com.marcoapps.apiavicena.model.vo.Convenio;
+import br.com.marcoapps.apiavicena.model.vo.Especializacao;
+import br.com.marcoapps.apiavicena.model.vo.Paciente;
 
-    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+public class ConsultaDTO {
+
     private Integer codigoConsulta;
-    @DatabaseField (canBeNull = false)
-    private Date dataConsulta;
-    @DatabaseField (canBeNull = false)
-    private String horarioConsulta;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Paciente paciente;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Especializacao especializacao;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Convenio convenio;
+    private String dataConsulta;
+    private String horarioConsulta;
 
-    public Consulta() {
+    public ConsultaDTO() {
     }
 
-    public Consulta(Integer codigoConsulta, Paciente paciente, Especializacao especializacao, Convenio convenio, Date dataConsulta, String horarioConsulta) {
+    public ConsultaDTO(Integer codigoConsulta, Paciente paciente, Especializacao especializacao, Convenio convenio, String dataConsulta, String horarioConsulta) {
         this.codigoConsulta = codigoConsulta;
         this.paciente = paciente;
         this.especializacao = especializacao;
@@ -66,11 +62,11 @@ public class Consulta implements Serializable {
         this.convenio = convenio;
     }
 
-    public Date getDataConsulta() {
+    public String getDataConsulta() {
         return dataConsulta;
     }
 
-    public void setDataConsulta(Date dataConsulta) {
+    public void setDataConsulta(String dataConsulta) {
         this.dataConsulta = dataConsulta;
     }
 
@@ -82,15 +78,37 @@ public class Consulta implements Serializable {
         this.horarioConsulta = horarioConsulta;
     }
 
+    public Consulta getConsulta(){
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date data = null;
+        try {
+            data = formatador.parse(dataConsulta);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Consulta c = new Consulta();
+         c.setCodigoConsulta(codigoConsulta);
+         c.setConvenio(convenio);
+         c.setDataConsulta(data);
+         c.setEspecializacao(especializacao);
+         c.setHorarioConsulta(horarioConsulta);
+         c.setPaciente(paciente);
+         return c;
+    }
+
     @Override
     public String toString() {
-        return "Consulta{" +
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return "ConsultaDTO{" +
                 "codigoConsulta=" + codigoConsulta +
                 ", paciente=" + paciente +
                 ", especializacao=" + especializacao +
                 ", convenio=" + convenio +
-                ", dataConsulta=" + dataConsulta +
+                ", dataConsulta='" + sdf.format(dataConsulta) + '\'' +
                 ", horarioConsulta='" + horarioConsulta + '\'' +
                 '}';
     }
+
 }

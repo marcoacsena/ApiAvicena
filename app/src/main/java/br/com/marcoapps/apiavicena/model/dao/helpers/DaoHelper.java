@@ -1,4 +1,4 @@
-package br.com.marcoapps.apiavicena.dao.helpers;
+package br.com.marcoapps.apiavicena.model.dao.helpers;
 
 import android.content.Context;
 

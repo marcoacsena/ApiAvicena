@@ -1,17 +1,17 @@
-package br.com.marcoapps.apiavicena.model;
+package br.com.marcoapps.apiavicena.model.dto;
 
-import java.io.Serializable;
+import br.com.marcoapps.apiavicena.model.vo.Convenio;
 
-public class Convenio implements Serializable {
+public class ConvenioDTO {
 
     private Integer codigoConvenio;
     private String nomeConvenio;
     private String valorConvenio;
 
-    public Convenio() {
+    public ConvenioDTO() {
     }
 
-    public Convenio(Integer codigoConvenio, String nomeConvenio, String valorConvenio) {
+    public ConvenioDTO(Integer codigoConvenio, String nomeConvenio, String valorConvenio) {
         this.codigoConvenio = codigoConvenio;
         this.nomeConvenio = nomeConvenio;
         this.valorConvenio = valorConvenio;
@@ -41,9 +41,20 @@ public class Convenio implements Serializable {
         this.valorConvenio = valorConvenio;
     }
 
+
+    public Convenio getConvenio(){
+
+      Convenio c = new Convenio();
+      c.setCodigoConvenio(codigoConvenio);
+      c.setValorConvenio(valorConvenio);
+      c.setNomeConvenio(nomeConvenio);
+
+        return c;
+    }
+
     @Override
     public String toString() {
-        return "Convenio{" +
+        return "ConvenioDTO{" +
                 "codigoConvenio=" + codigoConvenio +
                 ", nomeConvenio='" + nomeConvenio + '\'' +
                 ", valorConvenio='" + valorConvenio + '\'' +

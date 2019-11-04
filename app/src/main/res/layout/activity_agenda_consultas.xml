@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".view.TelaOpcoes">
+    tools:context=".view.AgendaConsultas">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,42 +15,22 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginBottom="30dp"
-        android:text="Avicena"
+        android:text="Avicena - Agenda de Consultas"
         android:textSize="18sp"
 
         />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="26dp"
-        android:src="@drawable/coracao"
-
-        />
-
-    <Button
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acessar agenda de consultas"
-        android:background="#c8e6c9"
-        android:layout_marginBottom="16dp"
-
+        android:divider="@color/colorPrimary"
+        android:id="@+id/lvConcultas"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Atualizar dados do médico"
         android:background="#c8e6c9"
-        android:layout_marginBottom="16dp"
-
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sair"
-        android:background="#c8e6c9"
-
-        />
+        android:text="Voltar"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>
