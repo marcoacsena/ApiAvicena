@@ -1,8 +1,6 @@
 package br.com.marcoapps.apiavicena.controller;
 
 import android.app.Activity;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -10,20 +8,16 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.dto.ConsultaDTO;
 import br.com.marcoapps.apiavicena.model.dto.ListaConsultasDTO;
-import br.com.marcoapps.apiavicena.model.dto.UsuarioDTO;
 import br.com.marcoapps.apiavicena.model.vo.AdapterConsulta;
 import br.com.marcoapps.apiavicena.model.vo.Consulta;
-import br.com.marcoapps.apiavicena.model.vo.Usuario;
 import cz.msebera.android.httpclient.Header;
 
 public class AgendaConsultasController {
@@ -60,7 +54,6 @@ public class AgendaConsultasController {
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 
                 //  retorno em string da apiavicena em Json
-
                 String agendaEmJson = new String(bytes);
                 //conversao da string json para objeto
                 Gson gson = new Gson();

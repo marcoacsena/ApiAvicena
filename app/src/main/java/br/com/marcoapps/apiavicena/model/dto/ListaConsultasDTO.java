@@ -1,9 +1,6 @@
 package br.com.marcoapps.apiavicena.model.dto;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.com.marcoapps.apiavicena.model.vo.Consulta;

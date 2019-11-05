@@ -13,7 +13,6 @@ public class TelaOpcoesController {
 
     public TelaOpcoesController(Activity activity) {
         this.activity = activity;
-
     }
 
     public void acessarAgendaAction() {
