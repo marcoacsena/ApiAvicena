@@ -38,10 +38,6 @@ public class ConsultaDTO {
         this.codigoConsulta = codigoConsulta;
     }
 
-    public PacienteDTO getPacienteDTO() {
-        return pacienteVO;
-    }
-
     public PacienteDTO getPacienteVO() {
         return pacienteVO;
     }
@@ -49,19 +45,6 @@ public class ConsultaDTO {
     public void setPacienteVO(PacienteDTO pacienteVO) {
         this.pacienteVO = pacienteVO;
     }
-
-    public String getAtencaoEspecial() {
-        return atencaoEspecial;
-    }
-
-    public void setAtencaoEspecial(String atencaoEspecial) {
-        this.atencaoEspecial = atencaoEspecial;
-    }
-
-    public void setPacienteDTO(PacienteDTO pacienteDTO) {
-        this.pacienteVO = pacienteVO;
-    }
-
 
     public String getDataConsulta() {
         return dataConsulta;
@@ -79,6 +62,14 @@ public class ConsultaDTO {
         this.horarioConsulta = horarioConsulta;
     }
 
+    public String getAtencaoEspecial() {
+        return atencaoEspecial;
+    }
+
+    public void setAtencaoEspecial(String atencaoEspecial) {
+        this.atencaoEspecial = atencaoEspecial;
+    }
+
     public List<Consulta> getConsulta(){
         Consulta c = new Consulta();
         List<Consulta> consultas = new ArrayList<>();
@@ -94,13 +85,12 @@ public class ConsultaDTO {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return "ConsultaDTO{" +
                 "codigoConsulta=" + codigoConsulta +
-                ", paciente=" + pacienteVO +
-                ", dataConsulta='" + sdf.format(dataConsulta) + '\'' +
+                ", pacienteVO=" + pacienteVO +
+                ", dataConsulta='" + dataConsulta + '\'' +
                 ", horarioConsulta='" + horarioConsulta + '\'' +
+                ", atencaoEspecial='" + atencaoEspecial + '\'' +
                 '}';
     }
-
 }

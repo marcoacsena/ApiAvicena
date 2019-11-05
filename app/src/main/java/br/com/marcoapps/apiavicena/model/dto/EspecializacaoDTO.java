@@ -7,17 +7,17 @@ import br.com.marcoapps.apiavicena.model.vo.Medico;
 public class EspecializacaoDTO {
 
     private Integer codigoEspecializacao;
-    private Medico medico;
-    private Especialidade especialidade;
+    private Medico medicoVO;
+    private Especialidade especialidadeVO;
     private Integer ano;
 
     public EspecializacaoDTO() {
     }
 
-    public EspecializacaoDTO(Integer codigoEspecializacao, Medico medico, Especialidade especialidade, Integer ano) {
+    public EspecializacaoDTO(Integer codigoEspecializacao, Medico medicoVO, Especialidade especialidadeVO, Integer ano) {
         this.codigoEspecializacao = codigoEspecializacao;
-        this.medico = medico;
-        this.especialidade = especialidade;
+        this.medicoVO = medicoVO;
+        this.especialidadeVO = especialidadeVO;
         this.ano = ano;
     }
 
@@ -29,20 +29,21 @@ public class EspecializacaoDTO {
         this.codigoEspecializacao = codigoEspecializacao;
     }
 
-    public Medico getMedico() {
-        return medico;
+
+    public Medico getMedicoVO() {
+        return medicoVO;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setMedicoVO(Medico medicoVO) {
+        this.medicoVO = medicoVO;
     }
 
-    public Especialidade getEspecialidade() {
-        return especialidade;
+    public Especialidade getEspecialidadeVO() {
+        return especialidadeVO;
     }
 
-    public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
+    public void setEspecialidadeVO(Especialidade especialidadeVO) {
+        this.especialidadeVO = especialidadeVO;
     }
 
     public Integer getAno() {
@@ -57,8 +58,8 @@ public class EspecializacaoDTO {
 
         Especializacao e = new Especializacao();
         e.setCodigoEspecializacao(codigoEspecializacao);
-        e.setEspecialidade(especialidade);
-        e.setMedico(medico);
+        e.setEspecialidade(especialidadeVO);
+        e.setMedico(medicoVO);
         e.setAno(ano);
 
 
@@ -69,8 +70,8 @@ public class EspecializacaoDTO {
     public String toString() {
         return "EspecializacaoDTO{" +
                 "codigoEspecializacao=" + codigoEspecializacao +
-                ", medico=" + medico +
-                ", especialidade=" + especialidade +
+                ", medico=" + medicoVO +
+                ", especialidade=" + especialidadeVO +
                 ", ano=" + ano +
                 '}';
     }

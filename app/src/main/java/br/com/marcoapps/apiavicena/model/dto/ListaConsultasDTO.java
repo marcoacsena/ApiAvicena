@@ -33,10 +33,10 @@ public class ListaConsultasDTO {
         Consulta c = new Consulta();
         for(int i = 0; i<listaConsultasDTO.size(); i++) {
 
-            c.setPaciente(listaConsultasDTO.get(i).getPacienteDTO().getPaciente());
+            c.setPaciente(listaConsultasDTO.get(i).getPacienteVO().getPaciente());
             c.setHorarioConsulta(listaConsultasDTO.get(i).getHorarioConsulta());
             c.setDataConsulta(listaConsultasDTO.get(i).getDataConsulta());
-
+            c.setAtencaoEspecial(listaConsultasDTO.get(i).getAtencaoEspecial());
             c.setCodigoConsulta(listaConsultasDTO.get(i).getCodigoConsulta());
             consultas.add(c);
         }

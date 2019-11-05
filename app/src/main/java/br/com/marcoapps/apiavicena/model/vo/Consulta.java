@@ -41,16 +41,32 @@ public class Consulta implements Serializable {
         return codigoConsulta;
     }
 
+    public void setCodigoConsulta(Integer codigoConsulta) {
+        this.codigoConsulta = codigoConsulta;
+    }
+
+    public String getDataConsulta() {
+        return dataConsulta;
+    }
+
+    public void setDataConsulta(String dataConsulta) {
+        this.dataConsulta = dataConsulta;
+    }
+
+    public String getHorarioConsulta() {
+        return horarioConsulta;
+    }
+
+    public void setHorarioConsulta(String horarioConsulta) {
+        this.horarioConsulta = horarioConsulta;
+    }
+
     public String getAtencaoEspecial() {
         return atencaoEspecial;
     }
 
     public void setAtencaoEspecial(String atencaoEspecial) {
         this.atencaoEspecial = atencaoEspecial;
-    }
-
-    public void setCodigoConsulta(Integer codigoConsulta) {
-        this.codigoConsulta = codigoConsulta;
     }
 
     public Paciente getPaciente() {
@@ -77,31 +93,16 @@ public class Consulta implements Serializable {
         this.convenio = convenio;
     }
 
-    public String getDataConsulta() {
-        return dataConsulta;
-    }
-
-    public void setDataConsulta(String dataConsulta) {
-        this.dataConsulta = dataConsulta;
-    }
-
-    public String getHorarioConsulta() {
-        return horarioConsulta;
-    }
-
-    public void setHorarioConsulta(String horarioConsulta) {
-        this.horarioConsulta = horarioConsulta;
-    }
-
     @Override
     public String toString() {
         return "Consulta{" +
                 "codigoConsulta=" + codigoConsulta +
+                ", dataConsulta='" + dataConsulta + '\'' +
+                ", horarioConsulta='" + horarioConsulta + '\'' +
+                ", atencaoEspecial='" + atencaoEspecial + '\'' +
                 ", paciente=" + paciente +
                 ", especializacao=" + especializacao +
                 ", convenio=" + convenio +
-                ", dataConsulta=" + dataConsulta +
-                ", horarioConsulta='" + horarioConsulta + '\'' +
                 '}';
     }
 }
