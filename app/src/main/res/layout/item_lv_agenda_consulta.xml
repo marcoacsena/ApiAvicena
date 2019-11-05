@@ -12,42 +12,41 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Paciente"
+                android:text="Paciente: "
                 android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Data: "
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nome"
                 android:textSize="16sp"
                 android:id="@+id/tvNome"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Data"
-                android:textSize="16sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="30/09/1964"
                 android:textSize="16sp"
-                android:layout_gravity="center"
-                android:gravity="center"
+
                 android:id="@+id/tvData"/>
         </LinearLayout>
 
@@ -60,42 +59,40 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Atenção especial"
+                android:text="Atenção especial: "
                 android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Horário: "
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Descrição"
                 android:textSize="16sp"
                 android:id="@+id/tvAtencaoEspecial"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Horário"
-                android:textSize="16sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="10:30"
                 android:textSize="16sp"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:id="@+id/tvHorario"/>
         </LinearLayout>
 

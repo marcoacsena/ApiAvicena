@@ -74,7 +74,7 @@ public class UsuarioController {
         RequestParams parametros = new RequestParams();
         parametros.put("dado", gson.toJson(usuario));
         AsyncHttpClient client = new AsyncHttpClient();
-        client.post("http://192.168.43.108:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
+        client.post("http://10.10.100.131:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart(){
@@ -96,7 +96,6 @@ public class UsuarioController {
                 Usuario usuario = usuarioDTO.getUsurio();
                 if(usuario.getId()!=null) {
                     chamarTelaOpcoes(usuario);
-                    Toast.makeText(activity, usuario.toString(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(activity, "Usuario invalido", Toast.LENGTH_SHORT).show();
                 }

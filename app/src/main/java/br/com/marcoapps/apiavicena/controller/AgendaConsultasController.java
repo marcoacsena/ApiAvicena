@@ -47,7 +47,7 @@ public class AgendaConsultasController {
         String email = activity.getIntent().getStringExtra("email");
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://192.168.43.108:8080/ApiAvicena/api/consulta/" + email , new AsyncHttpResponseHandler() {
+        client.get("http://10.10.100.131:8080/ApiAvicena/api/consulta/" + email , new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart(){
@@ -88,7 +88,7 @@ public class AgendaConsultasController {
         });
 
     }
-
-    public void voltarAction() {
+    public void voltarAction(){
+        activity.finish();
     }
 }
