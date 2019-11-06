@@ -27,9 +27,8 @@ public class ListaConsultasDTO {
     public List<Consulta> getConsultas(){
 
         List<Consulta> consultas = new ArrayList<>();
-        Consulta c = new Consulta();
         for(int i = 0; i<listaConsultasDTO.size(); i++) {
-
+            Consulta c = new Consulta();
             c.setPaciente(listaConsultasDTO.get(i).getPacienteVO().getPaciente());
             c.setHorarioConsulta(listaConsultasDTO.get(i).getHorarioConsulta());
             c.setDataConsulta(listaConsultasDTO.get(i).getDataConsulta());
