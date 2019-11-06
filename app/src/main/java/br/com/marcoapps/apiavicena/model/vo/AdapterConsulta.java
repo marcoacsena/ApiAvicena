@@ -55,7 +55,7 @@ public class AdapterConsulta extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //resgatar a pessoa da lista
-        final Consulta consulta = listConsultas.get(position);
+        Consulta consulta = listConsultas.get(position);
         //resgatar o layout do item
         convertView = inflater.inflate(R.layout.item_lv_agenda_consulta, null);
         //resgatar os elementos para saida dos dados

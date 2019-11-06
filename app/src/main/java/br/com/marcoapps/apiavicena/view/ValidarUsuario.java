@@ -22,4 +22,5 @@ public class ValidarUsuario extends AppCompatActivity {
 
         control.validarAction();
     }
+
 }

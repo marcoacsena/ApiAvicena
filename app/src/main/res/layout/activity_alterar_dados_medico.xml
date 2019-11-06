@@ -2,8 +2,81 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/a"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".view.AlterarDadosMedico">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="Avicena - Alterar Dados de Contato"
+        android:textSize="18sp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#c8e6c9"
+        android:padding="3dp"
+        android:text="Celular de Mensagens:"
+        android:textSize="18sp"
+
+        />
+
+    <EditText
+        android:id="@+id/editCelularMensagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Digite seu novo número de celular"
+        android:padding="16dp"
+        android:paddingTop="0dp"
+
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#c8e6c9"
+        android:padding="3dp"
+        android:text="Celular Particular:"
+        android:textSize="18sp"
+
+
+        />
+
+    <EditText
+        android:id="@+id/editCelularParticular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite seu novo número de celular"
+        android:textSize="16sp"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#c8e6c9"
+        android:onClick="alterarDados"
+        android:text="Alterar Dados"
+        android:textSize="16sp"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_marginTop="10dp"
+        android:background="#c8e6c9"
+        android:onClick="voltar"
+        android:text="Voltar" />
 </LinearLayout>
