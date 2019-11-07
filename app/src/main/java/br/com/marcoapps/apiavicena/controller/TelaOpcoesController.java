@@ -55,7 +55,7 @@ public class TelaOpcoesController {
         String email = usuario.getLogin();
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://192.168.43.108:8080/ApiAvicena/api/medico/" + email , new AsyncHttpResponseHandler() {
+        client.get("http://10.10.100.193:8080/ApiAvicena/api/medico/" + email , new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart(){

@@ -13,6 +13,7 @@ import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.bo.MedicoBO;
 import br.com.marcoapps.apiavicena.model.dto.MedicoDTO;
 import br.com.marcoapps.apiavicena.model.vo.Medico;
+import br.com.marcoapps.apiavicena.uitl.Mascaras;
 import cz.msebera.android.httpclient.Header;
 
 public class AlterarDadosMedicoController {
@@ -32,6 +33,8 @@ public class AlterarDadosMedicoController {
     private void initComponents() {
         editCelularMensagem = activity.findViewById(R.id.editCelularMensagem);
         editCelularParticular = activity.findViewById(R.id.editCelularParticular);
+        editCelularMensagem.addTextChangedListener(Mascaras.mask(editCelularMensagem, Mascaras.FORMAT_FONE));
+        editCelularParticular.addTextChangedListener(Mascaras.mask(editCelularParticular, Mascaras.FORMAT_FONE));
     }
 
     public void alterarDadosAction() {
@@ -74,8 +77,8 @@ public class AlterarDadosMedicoController {
         parametros.put("dado", gson.toJson(medico));
         AsyncHttpClient client = new AsyncHttpClient();
         int codigoMedico = medicoValidado.getCodigoMedico();
-        client.put("http://192.168.43.108:8080/ApiAvicena/api/medico/" + codigoMedico , parametros, new AsyncHttpResponseHandler() {
-
+        client.put("http://10.10.100.193:8080/ApiAvicena/api/medico/" + codigoMedico , parametros, new AsyncHttpResponseHandler() {
+//192.168.43.108
             @Override
             public void onStart(){
 
@@ -86,17 +89,10 @@ public class AlterarDadosMedicoController {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 
-             //     retorno em string da apiavicena em Json
                 String medicoEmJson = new String(bytes);
-                //conversao da string json para objeto
-                Gson gson = new Gson();
-
-                MedicoDTO medicoDTO = gson.fromJson(medicoEmJson, MedicoDTO.class);
-                Medico medico = medicoDTO.getMedico();
-                if(medico != null) {
-                    Toast.makeText(activity, "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show();
+                if(medicoEmJson.equals("true")) {
+                    Toast.makeText(activity, "Dados atualizados com sucesso!", Toast.LENGTH_LONG).show();
                     limparDados();
-
                 }
            }
 
@@ -107,16 +103,14 @@ public class AlterarDadosMedicoController {
             }
 
         });
-
     }
 
     private void limparDados() {
         editCelularParticular.setText("");
         editCelularMensagem.setText("");
-
     }
 
-
     public void voltarAction() {
+        activity.finish();
     }
 }
