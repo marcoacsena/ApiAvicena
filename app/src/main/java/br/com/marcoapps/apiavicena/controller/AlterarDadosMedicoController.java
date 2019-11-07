@@ -9,8 +9,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import java.lang.reflect.Type;
-
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.bo.MedicoBO;
 import br.com.marcoapps.apiavicena.model.dto.MedicoDTO;
@@ -70,12 +68,13 @@ public class AlterarDadosMedicoController {
 
     private void atualizarDadosMedico(Medico medico) {
 
-        String email = activity.getIntent().getStringExtra("email");
+        Medico medicoValidado = (Medico) activity.getIntent().getSerializableExtra("medico");
         RequestParams parametros = new RequestParams();
         Gson gson = new Gson();
         parametros.put("dado", gson.toJson(medico));
         AsyncHttpClient client = new AsyncHttpClient();
-        client.put("http://10.10.101.186:8080/ApiAvicena/api/medico/" + email, parametros, new AsyncHttpResponseHandler() {
+        int codigoMedico = medicoValidado.getCodigoMedico();
+        client.put("http://192.168.43.108:8080/ApiAvicena/api/medico/" + codigoMedico , parametros, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart(){
@@ -87,7 +86,7 @@ public class AlterarDadosMedicoController {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 
-                //  retorno em string da apiavicena em Json
+             //     retorno em string da apiavicena em Json
                 String medicoEmJson = new String(bytes);
                 //conversao da string json para objeto
                 Gson gson = new Gson();
@@ -99,7 +98,7 @@ public class AlterarDadosMedicoController {
                     limparDados();
 
                 }
-            }
+           }
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
