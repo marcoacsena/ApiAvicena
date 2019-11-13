@@ -4,7 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 @DatabaseTable(tableName = "consulta")
 public class Consulta implements Serializable {
@@ -15,26 +15,21 @@ public class Consulta implements Serializable {
     private String dataConsulta;
     @DatabaseField (canBeNull = false)
     private String horarioConsulta;
-    @DatabaseField (canBeNull = false)
+    @DatabaseField
     private String atencaoEspecial;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private Paciente paciente;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private Especializacao especializacao;
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private Convenio convenio;
+   @DatabaseField(foreign = true, foreignAutoRefresh = true)
+
+    private Paciente pacienteVO;
 
     public Consulta() {
     }
 
-    public Consulta(Integer codigoConsulta, String dataConsulta, String horarioConsulta, String atencaoEspecial, Paciente paciente, Especializacao especializacao, Convenio convenio) {
+    public Consulta(Integer codigoConsulta, String dataConsulta, String horarioConsulta, String atencaoEspecial, Paciente pacienteVO) {
         this.codigoConsulta = codigoConsulta;
         this.dataConsulta = dataConsulta;
         this.horarioConsulta = horarioConsulta;
         this.atencaoEspecial = atencaoEspecial;
-        this.paciente = paciente;
-        this.especializacao = especializacao;
-        this.convenio = convenio;
+        this.pacienteVO = pacienteVO;
     }
 
     public Integer getCodigoConsulta() {
@@ -46,6 +41,7 @@ public class Consulta implements Serializable {
     }
 
     public String getDataConsulta() {
+
         return dataConsulta;
     }
 
@@ -70,39 +66,24 @@ public class Consulta implements Serializable {
     }
 
     public Paciente getPaciente() {
-        return paciente;
+        return pacienteVO;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Especializacao getEspecializacao() {
-        return especializacao;
-    }
-
-    public void setEspecializacao(Especializacao especializacao) {
-        this.especializacao = especializacao;
-    }
-
-    public Convenio getConvenio() {
-        return convenio;
-    }
-
-    public void setConvenio(Convenio convenio) {
-        this.convenio = convenio;
+    public void setPaciente(Paciente pacienteVO) {
+        this.pacienteVO = pacienteVO;
     }
 
     @Override
     public String toString() {
+
+
+
         return "Consulta{" +
                 "codigoConsulta=" + codigoConsulta +
                 ", dataConsulta='" + dataConsulta + '\'' +
                 ", horarioConsulta='" + horarioConsulta + '\'' +
                 ", atencaoEspecial='" + atencaoEspecial + '\'' +
-                ", paciente=" + paciente +
-                ", especializacao=" + especializacao +
-                ", convenio=" + convenio +
+                ", paciente=" + pacienteVO +
                 '}';
     }
 }

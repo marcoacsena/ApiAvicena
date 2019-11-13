@@ -1,19 +1,27 @@
 package br.com.marcoapps.apiavicena.controller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.j256.ormlite.dao.Dao;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.lang.reflect.Type;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.marcoapps.apiavicena.R;
+import br.com.marcoapps.apiavicena.model.dao.db.ConsultaDao;
 import br.com.marcoapps.apiavicena.model.dto.ConsultaDTO;
 import br.com.marcoapps.apiavicena.model.dto.ListaConsultasDTO;
 import br.com.marcoapps.apiavicena.model.vo.AdapterConsulta;
@@ -24,11 +32,15 @@ public class AgendaConsultasController {
 
     private Activity activity;
     private ListView lvConsultas;
-    private List<Consulta> listConsultas;
+    private List<Consulta> listaConsultas;
     private AdapterConsulta adapterConsulta;
+    private ConsultaDao consultaDao;
+    private Consulta consulta;
 
     public AgendaConsultasController(Activity activity) {
         this.activity = activity;
+        consultaDao = new ConsultaDao(activity);
+        consulta = new Consulta();
         initComponents();
     }
 
@@ -41,10 +53,10 @@ public class AgendaConsultasController {
         String email = activity.getIntent().getStringExtra("email");
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://10.10.100.193:8080/ApiAvicena/api/consulta/" + email , new AsyncHttpResponseHandler() {
-
+        client.get("http://192.168.43.108:8080/ApiAvicena/api/consulta/" + email, new AsyncHttpResponseHandler() {
+//192.168.43.108
             @Override
-            public void onStart(){
+            public void onStart() {
 
                 super.onStart();
                 Toast.makeText(activity, "Agenda do médico foi iniciada...", Toast.LENGTH_SHORT).show();
@@ -58,16 +70,28 @@ public class AgendaConsultasController {
                 //conversao da string json para objeto
                 Gson gson = new Gson();
 
-                Type consultasListType = new TypeToken<ArrayList<ConsultaDTO>>(){}.getType();
+                Type consultasListType = new TypeToken<ArrayList<ConsultaDTO>>() {
+                }.getType();
                 List<ConsultaDTO> listConsultas = gson.fromJson(agendaEmJson, consultasListType);
                 ListaConsultasDTO listaConsultasDTO = new ListaConsultasDTO();
                 listaConsultasDTO.setListaConsultasDTO(listConsultas);
-                if(listaConsultasDTO != null) {
+                if (listaConsultasDTO != null) {
+                    for (Consulta c:listaConsultasDTO.getConsultas()) {
+                        try {
+                            consultaDao.getDao().createOrUpdate(c);
+                            Toast.makeText(activity, c.getPaciente().getNomePaciente(), Toast.LENGTH_SHORT).show();
 
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                     adapterConsulta = new AdapterConsulta(listaConsultasDTO.getConsultas(), activity);
                     lvConsultas.setAdapter(adapterConsulta);
 
-                }else{
+                    cliqueLongo();
+
+                } else {
                     Toast.makeText(activity, "Não foi possível carregar a agenda.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -75,13 +99,76 @@ public class AgendaConsultasController {
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                 Toast.makeText(activity, "Não foi possível carregar a agenda.", Toast.LENGTH_SHORT).show();
-
             }
+        });
+    }
 
+    public void voltarAction() {
+        activity.finish();
+    }
+
+    public void atualizarAction() {
+
+        if (lvConsultas == null) {
+            Dao.CreateOrUpdateStatus res;
+
+            try {
+                res = consultaDao.getDao().createOrUpdate(consulta);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void cliqueLongo() {
+        lvConsultas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    adapterConsulta = new AdapterConsulta(consultaDao.getDao().queryForAll(), activity);
+             lvConsultas.setAdapter(adapterConsulta);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                consulta = (Consulta) adapterConsulta.getItem(i);
+                dialogExcluirCategoria(consulta);
+                return true; //executa somente clique longo
+            }
         });
 
     }
-    public void voltarAction(){
-        activity.finish();
+
+    private void dialogExcluirCategoria(final Consulta c) {
+        AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
+        alerta.setTitle("Excluir Item");
+        alerta.setIcon(android.R.drawable.ic_menu_delete);
+        alerta.setMessage(c.toString());
+        alerta.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                consulta = null;
+            }
+        });
+        alerta.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                try {
+                    if (consultaDao.getDao().delete(c) > 0) {
+                        excluirConsultaLv(c);
+
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                consulta = null;
+            }
+        });
+        alerta.show();
     }
+
+    private void excluirConsultaLv(Consulta c) {
+        adapterConsulta.remove(c);
+    }
+
+
 }

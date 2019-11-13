@@ -5,18 +5,10 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.marcoapps.apiavicena.model.dto.ConsultaDTO;
-import br.com.marcoapps.apiavicena.model.dto.ListaConsultasDTO;
 import br.com.marcoapps.apiavicena.model.dto.MedicoDTO;
-import br.com.marcoapps.apiavicena.model.vo.AdapterConsulta;
 import br.com.marcoapps.apiavicena.model.vo.Medico;
 import br.com.marcoapps.apiavicena.model.vo.Usuario;
 import br.com.marcoapps.apiavicena.view.AgendaConsultas;
@@ -55,8 +47,8 @@ public class TelaOpcoesController {
         String email = usuario.getLogin();
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://10.10.100.193:8080/ApiAvicena/api/medico/" + email , new AsyncHttpResponseHandler() {
-
+        client.get("http://192.168.43.108:8080/ApiAvicena/api/medico/" + email , new AsyncHttpResponseHandler() {
+//192.168.43.108
             @Override
             public void onStart(){
 

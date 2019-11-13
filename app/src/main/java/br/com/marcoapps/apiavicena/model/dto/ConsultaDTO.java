@@ -85,10 +85,13 @@ public class ConsultaDTO {
 
     @Override
     public String toString() {
+
+     //   SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         return "ConsultaDTO{" +
                 "codigoConsulta=" + codigoConsulta +
                 ", pacienteVO=" + pacienteVO +
-                ", dataConsulta='" + dataConsulta + '\'' +
+                ", dataConsulta='" +  (dataConsulta) + '\'' +
                 ", horarioConsulta='" + horarioConsulta + '\'' +
                 ", atencaoEspecial='" + atencaoEspecial + '\'' +
                 '}';

@@ -1,28 +1,34 @@
 package br.com.marcoapps.apiavicena.model.vo;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
+@DatabaseTable(tableName = "paciente")
 public class Paciente implements Serializable {
-
-    private Integer codigoPaciente;
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+    private Integer pacienteVO_id;
+    @DatabaseField (canBeNull = false)
     private String nomePaciente;
+
     private String cpfPaciente;
 
     public Paciente() {
     }
 
-    public Paciente(Integer codigoPaciente, String nomePaciente, String cpfPaciente) {
-        this.codigoPaciente = codigoPaciente;
+    public Paciente(Integer pacienteVO_id, String nomePaciente, String cpfPaciente) {
+        this.pacienteVO_id = pacienteVO_id;
         this.nomePaciente = nomePaciente;
         this.cpfPaciente = cpfPaciente;
     }
 
-    public Integer getCodigoPaciente() {
-        return codigoPaciente;
+    public Integer getPacienteVO_id() {
+        return pacienteVO_id;
     }
 
-    public void setCodigoPaciente(Integer codigoPaciente) {
-        this.codigoPaciente = codigoPaciente;
+    public void setPacienteVO_id(Integer pacienteVO_id) {
+        this.pacienteVO_id = pacienteVO_id;
     }
 
     public String getNomePaciente() {
@@ -44,7 +50,7 @@ public class Paciente implements Serializable {
     @Override
     public String toString() {
         return "Paciente{" +
-                "codigoPaciente=" + codigoPaciente +
+                "codigoPaciente=" + pacienteVO_id +
                 ", nomePaciente='" + nomePaciente + '\'' +
                 ", cpfPaciente='" + cpfPaciente + '\'' +
                 '}';

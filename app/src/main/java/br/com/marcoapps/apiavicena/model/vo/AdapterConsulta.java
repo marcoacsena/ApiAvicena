@@ -5,13 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import br.com.marcoapps.apiavicena.R;
@@ -27,6 +22,7 @@ public class AdapterConsulta extends BaseAdapter {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
     }
+
     @Override
     public int getCount() {
         return listConsultas.size();
@@ -34,7 +30,7 @@ public class AdapterConsulta extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return listConsultas.size();
+        return listConsultas.get(position);
     }
 
     @Override

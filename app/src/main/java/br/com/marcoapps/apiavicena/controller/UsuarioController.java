@@ -74,8 +74,8 @@ public class UsuarioController {
         RequestParams parametros = new RequestParams();
         parametros.put("dado", gson.toJson(usuario));
         AsyncHttpClient client = new AsyncHttpClient();
-        client.post("http://10.10.100.193:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
-
+        client.post("http://192.168.43.108:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
+//192.168.43.108
             @Override
             public void onStart(){
 

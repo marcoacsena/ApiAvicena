@@ -43,7 +43,7 @@ public class PacienteDTO {
     public Paciente getPaciente(){
 
         Paciente p = new Paciente();
-        p.setCodigoPaciente(codigoPaciente);
+        p.setPacienteVO_id(codigoPaciente);
         p.setNomePaciente(nomePaciente);
         p.setCpfPaciente(cpfPaciente);
 

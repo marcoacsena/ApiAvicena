@@ -11,7 +11,6 @@ import com.loopj.android.http.RequestParams;
 
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.bo.MedicoBO;
-import br.com.marcoapps.apiavicena.model.dto.MedicoDTO;
 import br.com.marcoapps.apiavicena.model.vo.Medico;
 import br.com.marcoapps.apiavicena.uitl.Mascaras;
 import cz.msebera.android.httpclient.Header;
@@ -65,7 +64,6 @@ public class AlterarDadosMedicoController {
             editCelularParticular.setError("Preencha corretamente o número do celular");
             return false;
         }
-
         return true;
     }
 
@@ -77,8 +75,9 @@ public class AlterarDadosMedicoController {
         parametros.put("dado", gson.toJson(medico));
         AsyncHttpClient client = new AsyncHttpClient();
         int codigoMedico = medicoValidado.getCodigoMedico();
-        client.put("http://10.10.100.193:8080/ApiAvicena/api/medico/" + codigoMedico , parametros, new AsyncHttpResponseHandler() {
+        client.put("http://192.168.43.108:8080/ApiAvicena/api/medico/" + codigoMedico , parametros, new AsyncHttpResponseHandler() {
 //192.168.43.108
+//10.10.100.193
             @Override
             public void onStart(){
 

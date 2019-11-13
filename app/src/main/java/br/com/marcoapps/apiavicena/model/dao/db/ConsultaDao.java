@@ -9,6 +9,5 @@ public class ConsultaDao extends DaoHelper<Consulta> {
 
     public ConsultaDao(Context c) {
         super(c, Consulta.class);
-    } {
     }
 }
