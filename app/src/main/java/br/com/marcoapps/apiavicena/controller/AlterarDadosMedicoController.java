@@ -9,8 +9,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.sql.SQLException;
+
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.bo.MedicoBO;
+import br.com.marcoapps.apiavicena.model.dao.db.MedicoDao;
 import br.com.marcoapps.apiavicena.model.vo.Medico;
 import br.com.marcoapps.apiavicena.uitl.Mascaras;
 import cz.msebera.android.httpclient.Header;
@@ -34,7 +37,18 @@ public class AlterarDadosMedicoController {
         editCelularParticular = activity.findViewById(R.id.editCelularParticular);
         editCelularMensagem.addTextChangedListener(Mascaras.mask(editCelularMensagem, Mascaras.FORMAT_FONE));
         editCelularParticular.addTextChangedListener(Mascaras.mask(editCelularParticular, Mascaras.FORMAT_FONE));
+        preencherCamposTelefone();
+
+
     }
+
+    private void preencherCamposTelefone() {
+        Medico medicoValidado = (Medico) activity.getIntent().getSerializableExtra("medico");
+
+        editCelularMensagem.setText(medicoValidado.getCelMensagemMedico());
+        editCelularParticular.setText(medicoValidado.getCelularMedico());
+    }
+
 
     public void alterarDadosAction() {
         medico = pegarDadosDoForm();
@@ -78,6 +92,7 @@ public class AlterarDadosMedicoController {
         client.put("http://192.168.43.108:8080/ApiAvicena/api/medico/" + codigoMedico , parametros, new AsyncHttpResponseHandler() {
 //192.168.43.108
 //10.10.100.193
+//192.168.0.105
             @Override
             public void onStart(){
 
@@ -103,6 +118,7 @@ public class AlterarDadosMedicoController {
 
         });
     }
+
 
     private void limparDados() {
         editCelularParticular.setText("");

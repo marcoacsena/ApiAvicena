@@ -1,10 +1,14 @@
 package br.com.marcoapps.apiavicena.model.vo;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
-
+@DatabaseTable(tableName = "medico")
 public class Medico implements Serializable {
 
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
     private Integer codigoMedico;
     private String nomeMedico;
     private String crm;

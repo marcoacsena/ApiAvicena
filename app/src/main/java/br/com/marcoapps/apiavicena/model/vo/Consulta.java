@@ -78,12 +78,11 @@ public class Consulta implements Serializable {
 
 
 
-        return "Consulta{" +
-                "codigoConsulta=" + codigoConsulta +
-                ", dataConsulta='" + dataConsulta + '\'' +
-                ", horarioConsulta='" + horarioConsulta + '\'' +
-                ", atencaoEspecial='" + atencaoEspecial + '\'' +
-                ", paciente=" + pacienteVO +
-                '}';
+        return
+                "Nome do paciente=" + pacienteVO.getNomePaciente() + "\n"+
+                "Data da Consulta='" + dataConsulta + "\n" +
+                "Horario da Consulta='" + horarioConsulta + "\n" +
+                "Atenção Especial='" + atencaoEspecial;
+
     }
 }

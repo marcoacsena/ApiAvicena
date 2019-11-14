@@ -28,13 +28,6 @@
         android:id="@+id/lvConsultas"
         />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:layout_marginTop="10dp"
-        android:background="#c8e6c9"
-        android:onClick="atualizar"
-        android:text="Atualizar Consultas" />
 
     <Button
         android:layout_width="match_parent"

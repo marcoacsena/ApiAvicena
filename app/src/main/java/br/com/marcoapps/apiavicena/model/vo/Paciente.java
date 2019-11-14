@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @DatabaseTable(tableName = "paciente")
 public class Paciente implements Serializable {
-    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
-    private Integer pacienteVO_id;
+    @DatabaseField(allowGeneratedIdInsert = true, generatedId = true, columnName = "pacienteVO_id")
+    private Integer codigoPaciente;
     @DatabaseField (canBeNull = false)
     private String nomePaciente;
 
@@ -17,18 +17,18 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
-    public Paciente(Integer pacienteVO_id, String nomePaciente, String cpfPaciente) {
-        this.pacienteVO_id = pacienteVO_id;
+    public Paciente(Integer codigoPaciente, String nomePaciente, String cpfPaciente) {
+        this.codigoPaciente = codigoPaciente;
         this.nomePaciente = nomePaciente;
         this.cpfPaciente = cpfPaciente;
     }
 
-    public Integer getPacienteVO_id() {
-        return pacienteVO_id;
+    public Integer getCodigoPaciente() {
+        return codigoPaciente;
     }
 
-    public void setPacienteVO_id(Integer pacienteVO_id) {
-        this.pacienteVO_id = pacienteVO_id;
+    public void setCodigoPaciente(Integer codigoPaciente) {
+        this.codigoPaciente = codigoPaciente;
     }
 
     public String getNomePaciente() {
@@ -50,7 +50,7 @@ public class Paciente implements Serializable {
     @Override
     public String toString() {
         return "Paciente{" +
-                "codigoPaciente=" + pacienteVO_id +
+                "codigoPaciente=" + codigoPaciente +
                 ", nomePaciente='" + nomePaciente + '\'' +
                 ", cpfPaciente='" + cpfPaciente + '\'' +
                 '}';
