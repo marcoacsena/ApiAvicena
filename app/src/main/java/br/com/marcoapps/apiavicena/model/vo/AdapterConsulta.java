@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import br.com.marcoapps.apiavicena.R;
@@ -61,11 +63,15 @@ public class AdapterConsulta extends BaseAdapter {
         TextView tvAtencaoEspecial = convertView.findViewById(R.id.tvAtencaoEspecial);
         //mandar dados para o layout
         tvNome.setText(consulta.getPaciente().getNomePaciente());
-        tvData.setText(consulta.getDataConsulta());
+        String data = (consulta.getDataConsulta().replaceAll("-","/"));
+        String[] s = data.split("/");
+        String novaData = s[2] + "/" + s[1] + "/" + s[0];
+        tvData.setText(novaData);
         tvHorario.setText(consulta.getHorarioConsulta());
         tvAtencaoEspecial.setText(consulta.getAtencaoEspecial());
 
         return convertView;
+
     }
 }
 

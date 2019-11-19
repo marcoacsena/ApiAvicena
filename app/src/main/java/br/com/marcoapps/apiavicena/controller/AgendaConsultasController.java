@@ -92,8 +92,7 @@ public class AgendaConsultasController {
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
-
-                    }
+                  }
                     try {
                         adapterConsulta = new AdapterConsulta(consultaDao.getDao().queryForAll(), activity);
                         lvConsultas.setAdapter(adapterConsulta);
@@ -101,8 +100,8 @@ public class AgendaConsultasController {
                         e.printStackTrace();
                     }
 
-//                    adapterConsulta = new AdapterConsulta(listaConsultasDTO.getConsultas(), activity);
-//                    lvConsultas.setAdapter(adapterConsulta);
+//                   adapterConsulta = new AdapterConsulta(listaConsultasDTO.getConsultas(), activity);
+//                   lvConsultas.setAdapter(adapterConsulta);
 
                     cliqueLongo();
 
