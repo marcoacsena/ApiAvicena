@@ -76,6 +76,7 @@ public class UsuarioController {
         AsyncHttpClient client = new AsyncHttpClient();
         client.post("http://192.168.43.108:8080/ApiAvicena/api/usuario", parametros , new AsyncHttpResponseHandler() {
 //192.168.43.108
+// 192.168.0.105
             @Override
             public void onStart(){
 

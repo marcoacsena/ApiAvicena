@@ -8,6 +8,9 @@ import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import java.sql.SQLException;
+
+import br.com.marcoapps.apiavicena.model.dao.db.MedicoDao;
 import br.com.marcoapps.apiavicena.model.dto.MedicoDTO;
 import br.com.marcoapps.apiavicena.model.vo.Medico;
 import br.com.marcoapps.apiavicena.model.vo.Usuario;
@@ -20,11 +23,13 @@ public class TelaOpcoesController {
     private Activity activity;
     private Usuario usuario;
     private Medico medico;
+    private MedicoDao medicoDao;
 
     public TelaOpcoesController(Activity activity) {
         this.activity = activity;
         usuario = new Usuario();
         medico = new Medico();
+        medicoDao = new MedicoDao(activity);
     }
 
     public void acessarAgendaAction() {
@@ -49,6 +54,7 @@ public class TelaOpcoesController {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get("http://192.168.43.108:8080/ApiAvicena/api/medico/" + email , new AsyncHttpResponseHandler() {
 //192.168.43.108
+// 192.168.0.105
             @Override
             public void onStart(){
 
@@ -66,7 +72,11 @@ public class TelaOpcoesController {
                 MedicoDTO medicoDTO = gson.fromJson(medicoEmJson, MedicoDTO.class);
                 Medico medico = medicoDTO.getMedico();
                 if(medico != null) {
-
+                    try {
+                        medicoDao.getDao().createOrUpdate(medico);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     Intent it = new Intent(activity, AlterarDadosMedico.class);
                     it.putExtra("medico", medico);
                     activity.startActivity(it);

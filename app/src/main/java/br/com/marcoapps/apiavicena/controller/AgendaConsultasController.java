@@ -22,10 +22,12 @@ import java.util.List;
 
 import br.com.marcoapps.apiavicena.R;
 import br.com.marcoapps.apiavicena.model.dao.db.ConsultaDao;
+import br.com.marcoapps.apiavicena.model.dao.db.PacienteDao;
 import br.com.marcoapps.apiavicena.model.dto.ConsultaDTO;
 import br.com.marcoapps.apiavicena.model.dto.ListaConsultasDTO;
 import br.com.marcoapps.apiavicena.model.vo.AdapterConsulta;
 import br.com.marcoapps.apiavicena.model.vo.Consulta;
+import br.com.marcoapps.apiavicena.model.vo.Paciente;
 import cz.msebera.android.httpclient.Header;
 
 public class AgendaConsultasController {
@@ -36,11 +38,15 @@ public class AgendaConsultasController {
     private AdapterConsulta adapterConsulta;
     private ConsultaDao consultaDao;
     private Consulta consulta;
+    private PacienteDao pacienteDao;
+    private Paciente paciente;
 
     public AgendaConsultasController(Activity activity) {
         this.activity = activity;
         consultaDao = new ConsultaDao(activity);
         consulta = new Consulta();
+        paciente = new Paciente();
+        pacienteDao = new PacienteDao(activity);
         initComponents();
     }
 
@@ -55,6 +61,7 @@ public class AgendaConsultasController {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get("http://192.168.43.108:8080/ApiAvicena/api/consulta/" + email, new AsyncHttpResponseHandler() {
 //192.168.43.108
+            //192.168.0.105
             @Override
             public void onStart() {
 
@@ -78,16 +85,23 @@ public class AgendaConsultasController {
                 if (listaConsultasDTO != null) {
                     for (Consulta c:listaConsultasDTO.getConsultas()) {
                         try {
-                            consultaDao.getDao().createOrUpdate(c);
-                            Toast.makeText(activity, c.getPaciente().getNomePaciente(), Toast.LENGTH_SHORT).show();
+                            paciente = c.getPaciente();
+                            pacienteDao.getDao().createIfNotExists(paciente);
+                            consultaDao.getDao().createIfNotExists(c);
 
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
-
+                  }
+                    try {
+                        adapterConsulta = new AdapterConsulta(consultaDao.getDao().queryForAll(), activity);
+                        lvConsultas.setAdapter(adapterConsulta);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
-                    adapterConsulta = new AdapterConsulta(listaConsultasDTO.getConsultas(), activity);
-                    lvConsultas.setAdapter(adapterConsulta);
+
+//                   adapterConsulta = new AdapterConsulta(listaConsultasDTO.getConsultas(), activity);
+//                   lvConsultas.setAdapter(adapterConsulta);
 
                     cliqueLongo();
 
@@ -107,38 +121,20 @@ public class AgendaConsultasController {
         activity.finish();
     }
 
-    public void atualizarAction() {
-
-        if (lvConsultas == null) {
-            Dao.CreateOrUpdateStatus res;
-
-            try {
-                res = consultaDao.getDao().createOrUpdate(consulta);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private void cliqueLongo() {
         lvConsultas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                try {
-                    adapterConsulta = new AdapterConsulta(consultaDao.getDao().queryForAll(), activity);
-             lvConsultas.setAdapter(adapterConsulta);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
                 consulta = (Consulta) adapterConsulta.getItem(i);
-                dialogExcluirCategoria(consulta);
+                dialogExcluirConsulta(consulta);
                 return true; //executa somente clique longo
             }
         });
 
     }
 
-    private void dialogExcluirCategoria(final Consulta c) {
+    private void dialogExcluirConsulta(final Consulta c) {
         AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
         alerta.setTitle("Excluir Item");
         alerta.setIcon(android.R.drawable.ic_menu_delete);

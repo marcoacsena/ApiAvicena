@@ -74,7 +74,6 @@ public class ConsultaDTO {
         Consulta c = new Consulta();
         List<Consulta> consultas = new ArrayList<>();
          c.setCodigoConsulta(codigoConsulta);
-
          c.setDataConsulta(dataConsulta);
          c.setAtencaoEspecial(atencaoEspecial);
          c.setHorarioConsulta(horarioConsulta);

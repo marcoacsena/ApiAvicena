@@ -22,7 +22,4 @@ public class AgendaConsultas extends AppCompatActivity {
         control.voltarAction();
     }
 
-    public void atualizar(View view) {
-        control.atualizarAction();
-    }
 }

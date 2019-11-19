@@ -5,11 +5,11 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-
 @DatabaseTable(tableName = "consulta")
 public class Consulta implements Serializable {
-
     @DatabaseField(allowGeneratedIdInsert = true, generatedId = true)
+    private Integer id;
+    @DatabaseField(unique = true)
     private Integer codigoConsulta;
     @DatabaseField (canBeNull = false)
     private String dataConsulta;
@@ -24,11 +24,28 @@ public class Consulta implements Serializable {
     public Consulta() {
     }
 
-    public Consulta(Integer codigoConsulta, String dataConsulta, String horarioConsulta, String atencaoEspecial, Paciente pacienteVO) {
+    public Consulta(Integer id, Integer codigoConsulta, String dataConsulta, String horarioConsulta, String atencaoEspecial, Paciente pacienteVO) {
+        this.id = id;
         this.codigoConsulta = codigoConsulta;
         this.dataConsulta = dataConsulta;
         this.horarioConsulta = horarioConsulta;
         this.atencaoEspecial = atencaoEspecial;
+        this.pacienteVO = pacienteVO;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Paciente getPacienteVO() {
+        return pacienteVO;
+    }
+
+    public void setPacienteVO(Paciente pacienteVO) {
         this.pacienteVO = pacienteVO;
     }
 
@@ -75,15 +92,15 @@ public class Consulta implements Serializable {
 
     @Override
     public String toString() {
+        String data = (this.getDataConsulta().replaceAll("-","/"));
+        String[] s = data.split("/");
+        String novaData = s[2] + "/" + s[1] + "/" + s[0];
 
+        return
+                "Nome do paciente=" + pacienteVO.getNomePaciente() + "\n"+
+                "Data da Consulta='" + novaData + "\n" +
+                "Horario da Consulta='" + horarioConsulta + "\n" +
+                "Atenção Especial='" + atencaoEspecial;
 
-
-        return "Consulta{" +
-                "codigoConsulta=" + codigoConsulta +
-                ", dataConsulta='" + dataConsulta + '\'' +
-                ", horarioConsulta='" + horarioConsulta + '\'' +
-                ", atencaoEspecial='" + atencaoEspecial + '\'' +
-                ", paciente=" + pacienteVO +
-                '}';
     }
 }
